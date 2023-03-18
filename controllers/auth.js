@@ -47,14 +47,14 @@ export const login = async (req, res) => {
 
   // 1. If user DOESNT exist -> return
   if (!user) {
-    res.send('Email or password is invalid.');
+    res.send('Email or password is invalid.', 500);
     return;
   }
   // 2. If user DOES exist -> CHECK IF PASSWORD IS VALID
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
     // 3. If password is invalid -> return
-    res.send('Email or password is invalid.');
+    res.send('Email or password is invalid.', 500);
     return;
   }
 
@@ -67,5 +67,5 @@ export const login = async (req, res) => {
     },
     process.env.JWT_SECRET
   );
-  res.json({ message: 'Welcome back!', name: user.name, token: jwtToken });
+  res.json({ userId: user.id, name: user.name, token: jwtToken });
 };
