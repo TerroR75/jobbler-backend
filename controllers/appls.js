@@ -23,8 +23,8 @@ export const createNew = async (req, res) => {
 };
 
 export const getAllByUserId = async (req, res) => {
-  const { id } = req.body;
-  const userAppls = await applM.findAllByUserId(id);
+  const { user } = req;
+  const userAppls = await applM.findAllByUserId(user.id);
 
   if (userAppls) {
     res.status(200).json(userAppls);
