@@ -28,6 +28,11 @@ export default class User {
     const [result] = await this.db.query(q, [name, email, password, id]);
     return result.affectedRows > 0;
   }
+  async incrApplQuant(id) {
+    const q = 'UPDATE users SET appl_amount = appl_amount + 1 WHERE id = ?';
+    const [result] = await this.db.query(q, [id]);
+    return result.affectedRows > 0;
+  }
 
   async delete(id) {
     const q = 'DELETE FROM users WHERE id = ?';

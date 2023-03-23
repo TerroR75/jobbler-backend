@@ -12,7 +12,7 @@ import applRoutes from './routes/appl.js';
 
 // MIDDLEWARES
 app.use(express.json());
-app.use(Limiter.general);
+// app.use(Limiter.general);
 
 // ROUTES
 app.use('/api/users', userRoutes);
